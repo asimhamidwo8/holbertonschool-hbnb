@@ -149,8 +149,7 @@ BusinessLogic -->> API: Return Review object
 API -->> A1: Return Message + JSON
 ```
 
-**Description**: User submits place info → API → PlaceService → Database → response
-
+**Description**: User submits place info → API → PlaceService → DB → response
 ---
 
 ### 3. Review Submission
@@ -196,10 +195,15 @@ BusinessLogic -->> API: Return List of Place objects
 API -->> A1: Return Message + JSON Array
 ```
 
-***Description**: Retrieving a list of available places, with the option to apply filters or specific criteria before querying the database.
+***Description**: User asks for places → filters applied → DB queried → results returnded
 
 ---
 
-###✅ Final Notes
+## ✅ Final Notes
 
-This documentation guarantees a clear separation of concerns using a layered architecture. By adhering to these models and sequence flows, the development team can ensure scalability and maintainability for future phases of the HBnB project.
+This document contains all the necessary to start building the HBnB project:
+* **The Package Diagram:** Shows the big picture of the system.
+* **The Class Diagram:** Shows the database models and their relationships.
+* **The Sequence Diagrams:** Show how the system handles user requests step-by-step.
+
+This file should be kept updated as the project grows and new features are added!
