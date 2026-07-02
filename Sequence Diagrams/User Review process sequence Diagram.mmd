@@ -1,4 +1,3 @@
-```mermaid
 ---
 config:
   layout: dagre
@@ -20,4 +19,3 @@ BusinessLogic ->> Persistence: Save Review data (user_id, place_id, rating, comm
 Persistence -->> BusinessLogic: Return review ID and confirmation
 BusinessLogic -->> API: Return Review Info
 API -->> A1: Return Message (Review Published)
-```
