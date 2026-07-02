@@ -35,6 +35,10 @@ This documentation presents the full architectural overview, including:
 [cite_start]Below is the Detailed Class Diagram representing the Business Logic Layer, including the entities, their attributes, methods, and relationships[cite: 5, 6, 7, 8, 9].
 
 ```mermaid
+---
+config:
+    layout: elk
+---
 classDiagram
     class User {
         +id: UUID
