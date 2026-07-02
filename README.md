@@ -100,3 +100,123 @@ classDiagram
     User "1" o-- "n" Review : writes
     Place "1" *-- "n" Review : has
     Place "n" o-- "n" Amenity : includes
+
+## 🔁 Sequence Diagrams – API Interaction Flow
+
+## The following diagrams illustrate the step-by-step interactions between the layers (User -> API -> BusinessLogic -> Persistence) for four core operations.
+
+### 1. User Registration
+
+```mermaid
+---
+config:
+  layout: dagre
+  theme: redux-color
+  look: neo
+---
+sequenceDiagram
+  actor A1 as User
+  participant API as Presentation (API)
+  participant BusinessLogic
+  participant Persistence as Persistence (Database)
+
+
+A1 ->> API: User Register Request (first_name, last_name, email, password)
+Note over API: Validate and Process Request 
+API ->> BusinessLogic: Forward Register Request 
+Note over BusinessLogic: Hash password, Generate UUID, Create Time
+BusinessLogic ->> Persistence: Save user data (ID, first_name, last_name, email, hach_password, created_at, update_at)
+Persistence -->> BusinessLogic: Confirm Save, return new user ID
+BusinessLogic -->> API: Return Respons (Without password)
+API -->> A1: Return Message (Success or Failed)
+```
+
+**Description**: User sends registration data → API → Service → Repository → Confirmation response.
+
+---
+
+### 2. Place Creation
+```mermaid
+---
+config:
+  layout: dagre
+  theme: redux-color
+  look: neo
+---
+sequenceDiagram
+  actor A1 as User
+  participant API as Presentation (API)
+  participant BusinessLogic
+  participant Persistence as Persistence (Database)
+
+
+A1 ->> API: User Create Place Request <br>(Title, Description, Price, Latitude, Longitude)
+Note over API: Validate and Process Request 
+API ->> BusinessLogic: Forward Create_Place Request 
+Note over BusinessLogic: Associate Current User as Owner,<br> Generate UUID, Set Create Time
+BusinessLogic ->> Persistence: Save Place data (ID, Owner_id, title, discription,<br> price, latitude, longitude, created_at, update_at)
+Persistence -->> BusinessLogic: Confirm Save, return new place ID
+BusinessLogic -->> API: Return Review object
+API -->> A1: Return Message + JSON
+```
+
+**Description**: User submits place info → API → PlaceService → Database → response
+
+---
+
+### 3. Review Submission
+
+```mermaid
+---
+config:
+  layout: dagre
+  theme: redux-color
+  look: neo
+---
+ sequenceDiagram
+  actor A1 as User
+  participant API as Presentation (API)
+  participant BusinessLogic
+  participant Persistence as Persistence (Database)
+
+
+A1 ->> API: User Review Request (Place_id, rating, comment)
+Note over API: Validate and Process Request 
+API ->> BusinessLogic: Forward create_Review Request 
+Note over BusinessLogic: Validate Rating (1-5),<br>Generate UUID, Create Time
+BusinessLogic ->> Persistence: Save Review data (user_id, place_id, rating, comment, created_at, updated_at)
+Persistence -->> BusinessLogic: Return review ID and confirmation
+BusinessLogic -->> API: Return Review Info
+API -->> A1: Return Message (Review Published)
+```
+
+**Description**: Validating and saving a user's review for a specific place, ensuring rating bounds (1-5) are respected.
+
+---
+
+### 4. Fetching a List of Places
+
+```mermaid
+sequenceDiagram
+  actor A1 as User
+  participant API as Presentation (API)
+  participant BusinessLogic
+  participant Persistence as Persistence (Database)
+
+A1 ->> API: User Fetch Places Request
+Note over API: Validate and Process Request 
+API ->> BusinessLogic: Forward Fetch_Places Request 
+Note over BusinessLogic: Process business rules,<br> Prepare database query
+BusinessLogic ->> Persistence: Fetch Places data
+Persistence -->> BusinessLogic: Return list of Place records <br>(ID, title, price, latitude, longitude, etc.)
+BusinessLogic -->> API: Return List of Place objects
+API -->> A1: Return Message + JSON Array
+```
+
+***Description**: Retrieving a list of available places, with the option to apply filters or specific criteria before querying the database.
+
+---
+
+###✅ Final Notes
+
+This documentation guarantees a clear separation of concerns using a layered architecture. By adhering to these models and sequence flows, the development team can ensure scalability and maintainability for future phases of the HBnB project.
