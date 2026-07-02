@@ -1,6 +1,4 @@
-# HBnB Evolution – Technical Documentation
-
-This document serves as the foundational technical documentation for the HBnB Evolution project. It compiles all architectural diagrams, business logic models, and API interaction flows designed during the initial phase of the project. This guide is intended to help developers and collaborators understand the core system architecture.
+# HBnB Evolution – Project Documentation
 
 ---
 
