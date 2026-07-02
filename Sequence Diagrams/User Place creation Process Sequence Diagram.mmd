@@ -1,0 +1,23 @@
+```mermaid
+---
+config:
+  layout: dagre
+  theme: redux-color
+  look: neo
+---
+sequenceDiagram
+  actor A1 as User
+  participant API as Presentation (API)
+  participant BusinessLogic
+  participant Persistence as Persistence (Database)
+
+
+A1 ->> API: User Create Place Request <br>(Title, Description, Price, Latitude, Longitude)
+Note over API: Validate and Process Request 
+API ->> BusinessLogic: Forward Create_Place Request 
+Note over BusinessLogic: Associate Current User as Owner,<br> Generate UUID, Set Create Time
+BusinessLogic ->> Persistence: Save Place data (ID, Owner_id, title, discription,<br> price, latitude, longitude, created_at, update_at)
+Persistence -->> BusinessLogic: Confirm Save, return new place ID
+BusinessLogic -->> API: Return Review object
+API -->> A1: Return Message + JSON
+```

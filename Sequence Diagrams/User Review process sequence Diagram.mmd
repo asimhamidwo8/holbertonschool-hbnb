@@ -1,0 +1,23 @@
+```mermaid
+---
+config:
+  layout: dagre
+  theme: redux-color
+  look: neo
+---
+ sequenceDiagram
+  actor A1 as User
+  participant API as Presentation (API)
+  participant BusinessLogic
+  participant Persistence as Persistence (Database)
+
+
+A1 ->> API: User Review Request (Place_id, rating, comment)
+Note over API: Validate and Process Request 
+API ->> BusinessLogic: Forward create_Review Request 
+Note over BusinessLogic: Validate Rating (1-5),<br>Generate UUID, Create Time
+BusinessLogic ->> Persistence: Save Review data (user_id, place_id, rating, comment, created_at, updated_at)
+Persistence -->> BusinessLogic: Return review ID and confirmation
+BusinessLogic -->> API: Return Review Info
+API -->> A1: Return Message (Review Published)
+```

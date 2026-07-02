@@ -1,0 +1,22 @@
+```mermaid
+---
+config:
+  layout: dagre
+  theme: redux-color
+  look: neo
+---
+sequenceDiagram
+  actor A1 as User
+  participant API as Presentation (API)
+  participant BusinessLogic
+  participant Persistence as Persistence (Database)
+
+A1 ->> API: User Fetch Places Request
+Note over API: Validate and Process Request 
+API ->> BusinessLogic: Forward Fetch_Places Request 
+Note over BusinessLogic: Process business rules,<br> Prepare database query
+BusinessLogic ->> Persistence: Fetch Places data
+Persistence -->> BusinessLogic: Return list of Place records <br>(ID, title, price, latitude, longitude, etc.)
+BusinessLogic -->> API: Return List of Place objects
+API -->> A1: Return Message + JSON Array
+```
