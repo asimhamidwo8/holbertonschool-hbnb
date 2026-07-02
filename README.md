@@ -35,8 +35,6 @@ This documentation presents the full architectural overview, including:
 
 ## 🏛️ Detailed Class Diagram
 
-[cite_start]Below is the Detailed Class Diagram representing the Business Logic Layer, including the entities, their attributes, methods, and relationships[cite: 5, 6, 7, 8, 9].
-
 ```mermaid
 ---
 config:
@@ -100,6 +98,8 @@ classDiagram
     User "1" o-- "n" Review : writes
     Place "1" *-- "n" Review : has
     Place "n" o-- "n" Amenity : includes
+
+---
 
 ## 🔁 Sequence Diagrams – API Interaction Flow
 
