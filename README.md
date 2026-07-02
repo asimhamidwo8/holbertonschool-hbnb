@@ -98,6 +98,7 @@ classDiagram
     User "1" o-- "n" Review : writes
     Place "1" *-- "n" Review : has
     Place "n" o-- "n" Amenity : includes
+```
 
 ---
 
