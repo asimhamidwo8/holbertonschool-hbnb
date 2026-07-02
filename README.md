@@ -21,7 +21,10 @@ This documentation presents the full architectural overview, including:
 
 ## 🧱 High-Level Architecture – Package Diagram
 
-![High-Level Architecture](link-to-your-image.png)
+![High-Level Architecture]
+
+<img width="497" height="780" alt="image" src="https://github.com/user-attachments/assets/d3e94a74-fcc4-4361-9281-975201729708" />
+
 
 ### Architectural Layers:
 1. **Presentation Layer:** Contains the `API` and `Services`. It acts as the entry point for the application, handling incoming client requests.
