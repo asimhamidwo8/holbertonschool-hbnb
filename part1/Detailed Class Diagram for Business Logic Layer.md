@@ -61,22 +61,30 @@ classDiagram
 ## Explanatory Notes
 ### User
 Role: A person using the app. They can own places or write reviews.
+
 Key Attributes: id, first name, last name, email, password, and if they are an admin or owner.
+
 Key Methods: register(), update_profile(), delete().
 
 ### Place
 Role: A house, room, or apartment listed on the app for rent.
+
 Key Attributes: title, description, price, location (latitude/longitude), and the owner's ID.
+
 Key Methods: create(), update(), delete(), list().
 
 ### Review
 Role: A user's feedback (rating and comment) about a place.
+
 Key Attributes: rating number, comment text, user_id (who wrote it), and place_id (which place).
+
 Key Methods: create(), update(), delete(), list_by_place().
 
 ### Amenity
 Role: Extra features a place has, like Wi-Fi, a pool, or parking.
+
 Key Attributes: name, description.
+
 Key Methods: create(), update(), delete(), list().
 
 ## Entity Relationships
