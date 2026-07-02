@@ -6,22 +6,24 @@ This document serves as the foundational technical documentation for the HBnB Ev
 
 ## 📘 Introduction
 
-**HBnB Evolution** is a simplified, layered backend application inspired by Airbnb. The system is designed to allow users to:
-* Register and manage accounts.
-* Create and list properties (Places).
-* Submit and view reviews for specific places.
-* View amenities associated with places.
+**HBnB Evolution** is a simplified based on Airbnb application. 
 
-This documentation presents the full architectural overview, including:
-* The High-Level Layered Architecture (Package Diagram).
-* The Detailed Class Diagram for the Business Logic Layer.
-* Sequence Diagrams illustrating the interaction flow for core API operations.
+This app allows users to:
+* Create and manage accounts.
+* List places for rent.
+* Add amenities to places.
+* Write reviews for places they visited.
+
+This document serves as the main blueprint for the project and includes:
+1. **Package Diagram:** The overall system architecture.
+2. **Class Diagram:** The database entities and relationships.
+3. **Sequence Diagrams:** The step-by-step flow for API requests.
 
 ---
 
 ## 🧱 High-Level Architecture – Package Diagram
 
-![High-Level Architecture]
+
 
 <img width="497" height="780" alt="image" src="https://github.com/user-attachments/assets/d3e94a74-fcc4-4361-9281-975201729708" />
 
@@ -105,6 +107,8 @@ classDiagram
 ## 🔁 Sequence Diagrams – API Interaction Flow
 
 ## The following diagrams illustrate the step-by-step interactions between the layers (User -> API -> BusinessLogic -> Persistence) for four core operations.
+
+
 
 ### 1. User Registration
 
