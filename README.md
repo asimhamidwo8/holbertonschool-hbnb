@@ -109,12 +109,6 @@ classDiagram
 ### 1. User Registration
 
 ```mermaid
----
-config:
-  layout: dagre
-  theme: redux-color
-  look: neo
----
 sequenceDiagram
   actor A1 as User
   participant API as Presentation (API)
@@ -138,12 +132,6 @@ API -->> A1: Return Message (Success or Failed)
 
 ### 2. Place Creation
 ```mermaid
----
-config:
-  layout: dagre
-  theme: redux-color
-  look: neo
----
 sequenceDiagram
   actor A1 as User
   participant API as Presentation (API)
@@ -168,12 +156,6 @@ API -->> A1: Return Message + JSON
 ### 3. Review Submission
 
 ```mermaid
----
-config:
-  layout: dagre
-  theme: redux-color
-  look: neo
----
  sequenceDiagram
   actor A1 as User
   participant API as Presentation (API)
