@@ -60,40 +60,34 @@ classDiagram
 ```
 ## Explanatory Notes
 ### User
-Role: Represents a registered user in the HBnB system. A user can own properties (places) and write reviews for places they have visited.
-Key Attributes: id (UUID), first_name, last_name, email, password (hashed), is_admin, is_owner, created_at, updated_at.
+Role: A person using the app. They can own places or write reviews.
+Key Attributes: id, first name, last name, email, password, and if they are an admin or owner.
 Key Methods: register(), update_profile(), delete().
 
 ### Place
-Role: Represents a property or accommodation listed by a user (owner). It acts as the central hub for reviews and amenities.
-Key Attributes: id (UUID), title, description, price, latitude, longitude, owner_id, created_at, updated_at.
+Role: A house, room, or apartment listed on the app for rent.
+Key Attributes: title, description, price, location (latitude/longitude), and the owner's ID.
 Key Methods: create(), update(), delete(), list().
 
 ### Review
-Role: Represents feedback left by a user for a specific place.
-Key Attributes: id (UUID), place_id, user_id, rating (Integer), comment, created_at, updated_at.
+Role: A user's feedback (rating and comment) about a place.
+Key Attributes: rating number, comment text, user_id (who wrote it), and place_id (which place).
 Key Methods: create(), update(), delete(), list_by_place().
 
 ### Amenity
-Role: Represents a specific feature or facility available in a place (e.g., Wi-Fi, Pool, Air Conditioning).
-Key Attributes: id (UUID), name, description, created_at, updated_at.
+Role: Extra features a place has, like Wi-Fi, a pool, or parking.
+Key Attributes: name, description.
 Key Methods: create(), update(), delete(), list().
 
----
+## Entity Relationships
+### User & Place (One-to-Many)
+One user can own many places. Each place belongs to only one user.
 
-### Entity Relationships & Business Logic
+### Place & Review (Strong Connection)
+A place has many reviews. If a place is deleted from the app, all its reviews are deleted automatically.
 
-### Layer Communication (Facade Pattern)
-The layers communicate sequentially. The Presentation Layer interacts with the BusinessLogic Layer through a Facade Pattern to keep operations decoupled. The BusinessLogic then commands the Persistence Layer to save or fetch data.
+### User & Review
+A user writes reviews for places. The system links the review to the user who wrote it.
 
-### User & Place (One-to-Many Association)
-A single user can own multiple places, establishing an "owns" relationship. The Place entity stores the owner_id to maintain this link.
-
-### Place & Review (Composition)
-A place contains multiple reviews in a strict "has" relationship (Composition). Reviews cannot exist without a place. If a place is deleted from the system, all associated reviews are automatically destroyed.
-
-### User & Review (Dependency / Association)
-A user writes reviews. The system tracks this relationship via the user_id inside the Review entity to identify the author, but the review's lifecycle is directly tied to the Place, not the User.
-
-### Place & Amenity (Many-to-Many Aggregation)
-A place can include multiple amenities, and the same amenity can be linked to multiple places (Aggregation). If a place is deleted, the amenities remain in the system's database to be used by other places.
+### Place & Amenity (Many-to-Many)
+A place can have many amenities (like Wi-Fi and Pool). At the same time, the same amenity (like Wi-Fi) can be added to many different places.
