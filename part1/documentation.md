@@ -122,9 +122,9 @@ A1 ->> API: User Register Request (first_name, last_name, email, password)
 Note over API: Validate and Process Request
 API ->> BusinessLogic: Forward Register Request
 Note over BusinessLogic: Hash password, Generate UUID, Create Time
-BusinessLogic ->> Persistence: Save user data (ID, first_name, last_name, email, hach_password, created_at, update_at)
+BusinessLogic ->> Persistence: Save user data (ID, first_name, last_name, email, hash_password, created_at, update_at)
 Persistence -->> BusinessLogic: Confirm Save, return new user ID
-BusinessLogic -->> API: Return Respons (Without password)
+BusinessLogic -->> API: Return Response (Without password)
 API -->> A1: Return Message (Success or Failed)
 ```
 
@@ -145,7 +145,7 @@ A1 ->> API: User Create Place Request <br>(Title, Description, Price, Latitude, 
 Note over API: Validate and Process Request
 API ->> BusinessLogic: Forward Create_Place Request
 Note over BusinessLogic: Associate Current User as Owner,<br> Generate UUID, Set Create Time
-BusinessLogic ->> Persistence: Save Place data (ID, Owner_id, title, discription,<br> price, latitude, longitude, created_at, update_at)
+BusinessLogic ->> Persistence: Save Place data (ID, Owner_id, title, description,<br> price, latitude, longitude, created_at, update_at)
 Persistence -->> BusinessLogic: Confirm Save, return new place ID
 BusinessLogic -->> API: Return Review object
 API -->> A1: Return Message + JSON
@@ -197,7 +197,7 @@ BusinessLogic -->> API: Return List of Place objects
 API -->> A1: Return Message + JSON Array
 ```
 
-**Description**: User asks for places → filters applied → DB queried → results returnded
+**Description**: User asks for places → filters applied → DB queried → results returned
 
 ---
 
