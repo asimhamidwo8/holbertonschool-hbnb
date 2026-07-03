@@ -4,7 +4,7 @@
 
 ## 📘 Introduction
 
-**HBnB Evolution** is a simplified based on Airbnb application. 
+**HBnB Evolution** is a simplified based on Airbnb application.
 
 This app allows users to:
 * Create and manage accounts.
@@ -119,8 +119,8 @@ sequenceDiagram
 
 
 A1 ->> API: User Register Request (first_name, last_name, email, password)
-Note over API: Validate and Process Request 
-API ->> BusinessLogic: Forward Register Request 
+Note over API: Validate and Process Request
+API ->> BusinessLogic: Forward Register Request
 Note over BusinessLogic: Hash password, Generate UUID, Create Time
 BusinessLogic ->> Persistence: Save user data (ID, first_name, last_name, email, hach_password, created_at, update_at)
 Persistence -->> BusinessLogic: Confirm Save, return new user ID
@@ -142,8 +142,8 @@ sequenceDiagram
 
 
 A1 ->> API: User Create Place Request <br>(Title, Description, Price, Latitude, Longitude)
-Note over API: Validate and Process Request 
-API ->> BusinessLogic: Forward Create_Place Request 
+Note over API: Validate and Process Request
+API ->> BusinessLogic: Forward Create_Place Request
 Note over BusinessLogic: Associate Current User as Owner,<br> Generate UUID, Set Create Time
 BusinessLogic ->> Persistence: Save Place data (ID, Owner_id, title, discription,<br> price, latitude, longitude, created_at, update_at)
 Persistence -->> BusinessLogic: Confirm Save, return new place ID
@@ -165,8 +165,8 @@ API -->> A1: Return Message + JSON
 
 
 A1 ->> API: User Review Request (Place_id, rating, comment)
-Note over API: Validate and Process Request 
-API ->> BusinessLogic: Forward create_Review Request 
+Note over API: Validate and Process Request
+API ->> BusinessLogic: Forward create_Review Request
 Note over BusinessLogic: Validate Rating (1-5),<br>Generate UUID, Create Time
 BusinessLogic ->> Persistence: Save Review data (user_id, place_id, rating, comment, created_at, updated_at)
 Persistence -->> BusinessLogic: Return review ID and confirmation
@@ -188,8 +188,8 @@ sequenceDiagram
   participant Persistence as Persistence (Database)
 
 A1 ->> API: User Fetch Places Request
-Note over API: Validate and Process Request 
-API ->> BusinessLogic: Forward Fetch_Places Request 
+Note over API: Validate and Process Request
+API ->> BusinessLogic: Forward Fetch_Places Request
 Note over BusinessLogic: Process business rules,<br> Prepare database query
 BusinessLogic ->> Persistence: Fetch Places data
 Persistence -->> BusinessLogic: Return list of Place records <br>(ID, title, price, latitude, longitude, etc.)
@@ -197,11 +197,11 @@ BusinessLogic -->> API: Return List of Place objects
 API -->> A1: Return Message + JSON Array
 ```
 
-***Description**: User asks for places → filters applied → DB queried → results returnded
+**Description**: User asks for places → filters applied → DB queried → results returnded
 
 ---
 
-## ✅ Final Notes
+## Conclusion
 
 This document contains all the necessary to start building the HBnB project:
 * **The Package Diagram:** Shows the big picture of the system.
