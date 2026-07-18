@@ -1,5 +1,5 @@
-from flask_restx import Namespace, Resource, fields
-from hbnb.app.services import facade
+from flask_restx import Namespace, Resource, fields  # pyright: ignore[reportMissingImports]
+from app.services import facade
 
 api = Namespace('places', description='Place operations')
 
