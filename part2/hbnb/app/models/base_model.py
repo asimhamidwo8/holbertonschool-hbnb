@@ -23,10 +23,22 @@ class BaseModel:
         self.updated_at = self.get_current_time()
 
     def update(self, data):
-        """Update the model with the given data."""
-        for key, value in data.items():
-            if hasattr(self, key):
+        """Update the model with the given data.
+
+        Applies all attributes atomically: if any value fails validation
+        (property setters raise ValueError), previously-applied attributes
+        in this same call are rolled back so the object is left unchanged.
+        """
+        original = {}
+        try:
+            for key, value in data.items():
+                if hasattr(self, key):
+                    original[key] = getattr(self, key)
+                    setattr(self, key, value)
+        except Exception:
+            for key, value in original.items():
                 setattr(self, key, value)
+            raise
         self.save()
 
     def to_dict(self):

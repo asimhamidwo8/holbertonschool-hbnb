@@ -53,6 +53,7 @@ class UserResource(Resource):
     @api.expect(user_model, validate=True)
     @api.response(200, 'User updated successfully')
     @api.response(404, 'User not found')
+    @api.response(400, 'Email already registered')
     @api.response(400, 'Invalid input data')
     def put(self, user_id):
         """Update a user's information"""
@@ -60,6 +61,14 @@ class UserResource(Resource):
         if not user:
             return {'error': 'User not found'}, 404
         user_data = api.payload
+
+        # Email must stay unique across users, excluding the user being updated
+        new_email = user_data.get('email')
+        if new_email:
+            existing_user = facade.get_user_by_email(new_email)
+            if existing_user and existing_user.id != user_id:
+                return {'error': 'Email already registered'}, 400
+
         try:
             updated_user = facade.update_user(user_id, user_data)
         except ValueError as e:
