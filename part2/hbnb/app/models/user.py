@@ -13,12 +13,35 @@ class User(BaseModel):
         self.email = email
         self.is_admin = is_admin
 
-        if not first_name or len(first_name) > 50:
+    @property
+    def first_name(self):
+        return self._first_name
+
+    @first_name.setter
+    def first_name(self, value):
+        if not value or len(value) > 50:
             raise ValueError("first_name must be provided and less than 50 characters")
-        if not last_name or len(last_name) > 50:
+        self._first_name = value
+
+    @property
+    def last_name(self):
+        return self._last_name
+
+    @last_name.setter
+    def last_name(self, value):
+        if not value or len(value) > 50:
             raise ValueError("last_name must be provided and less than 50 characters")
-        if not email or not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+        self._last_name = value
+
+    @property
+    def email(self):
+        return self._email
+
+    @email.setter
+    def email(self, value):
+        if not value or not re.match(r"[^@]+@[^@]+\.[^@]+", value):
             raise ValueError("Invalid email format")
+        self._email = value
 
     def __str__(self):
         """Returns a string representation of the user."""
