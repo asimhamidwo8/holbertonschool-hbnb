@@ -39,6 +39,9 @@ class HBnBFacade:
     def get_user(self, user_id):
         return self.user_repo.get(user_id)
 
+    def get_user_by_email(self, email):
+        return self.user_repo.get_by_attribute('email', email)
+
     # ---------- Place ----------
     def create_place(self, place_data):
         owner_id = place_data.get('owner_id')
